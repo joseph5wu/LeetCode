@@ -40,4 +40,49 @@ public class Solution {
 
         return result;
     }
+
+    public String countAndSay2(int n) {
+        if(n <= 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        String prev = "1";
+        if(n == 1) {
+            return prev;
+        }
+        int count = 0;
+        for(int i = 1; i < n; i++) {
+            int j = 0;
+            StringBuilder sb = new StringBuilder();
+            while(j < prev.length()) {
+                if(j == 0) {
+                    count = 1;
+                }
+                else {
+                    if(prev.charAt(j - 1) == prev.charAt(j)) {
+                        count++;
+                    }
+                    else {
+                        sb.append(count);
+                        sb.append(prev.charAt(j - 1));
+                        count = 1;
+                    }
+                }
+                j++;
+            }
+            sb.append(count);
+            sb.append(prev.charAt(prev.length() - 1));
+
+            prev = sb.toString();
+        }
+
+        return prev;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        String result1 = sol.countAndSay(25);
+        String result2 = sol.countAndSay2(25);
+        System.out.println(result1.equals(result2));
+    }
 }

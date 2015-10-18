@@ -21,12 +21,21 @@ public class Solution {
 
         result.add(1);
         for(int i = 1; i <= rowIndex; i++) {
-            for(int j = result.size() - 2; j >= 0; j--) {
-                result.set(j + 1, result.get(j)+ result.get(j + 1));
+//            for(int j = result.size() - 2; j >= 0; j--) {
+//                result.set(j + 1, result.get(j)+ result.get(j + 1));
+//            }
+//            result.add(1);
+            result.add(i, 1);
+            for(int j = i - 1; j > 0; j--) {
+                result.set(j, result.get(j) + result.get(j - 1));
             }
-            result.add(1);
         }
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        List<Integer> result = sol.getRow(2);
     }
 }

@@ -47,4 +47,44 @@ public class Solution {
 
         return result.toString();
     }
+
+    public String convert2(String s, int numRows) {
+        if(s == null || s.length() == 0 || numRows == 1) {
+            return s;
+        }
+        if(numRows < 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < numRows; i++) {
+            if(i == 0 || i == numRows - 1) {
+                for(int j = i; j < s.length(); j += (2 * numRows - 2)) {
+                    result.append(s.charAt(j));
+                }
+            }
+            else {
+                int j = i;
+                boolean flag = false;
+                while(j < s.length()) {
+                    result.append(s.charAt(j));
+                    if(!flag) {
+                        j += 2 * (numRows - i -1);
+                        flag = true;
+                    }
+                    else {
+                        j += 2 * i;
+                        flag = false;
+                    }
+                }
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println(sol.convert2("A", 1));
+    }
 }

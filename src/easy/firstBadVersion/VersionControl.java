@@ -2,6 +2,6 @@ package easy.firstBadVersion;
 
 public class VersionControl {
     boolean isBadVersion(int version) {
-        return true;
+        return version >= 1702766719;
     }
 }

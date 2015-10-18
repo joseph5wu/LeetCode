@@ -36,4 +36,37 @@ public class Solution extends VersionControl{
             return -1;
         }
     }
+
+    public int firstBadVersion2(int n) {
+        if(n <= 0) {
+            return -1;
+        }
+
+        int start = 1;
+        int end = n;
+        while(start + 1 < end) {
+            // 不应该这样做，因为这样可能导致超过Integer范围
+            int mid = (start + end) / 2;
+            if(isBadVersion(mid)) {
+                end = mid;
+            }
+            else {
+                start = mid;
+            }
+        }
+
+        if(isBadVersion(start)) {
+            return start;
+        }
+        if(isBadVersion(end)) {
+            return end;
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println(sol.firstBadVersion2(2126753390));
+    }
 }
