@@ -43,4 +43,61 @@ public class Solution {
 
         return result;
     }
+
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root == null) {
+            return result;
+        }
+
+        preOrderTraversalRecursive(root, result);
+        return result;
+    }
+
+    private void preOrderTraversalRecursive(TreeNode node, List<Integer> result) {
+        if(node == null) {
+            return;
+        }
+        result.add(node.val);
+        preOrderTraversalRecursive(node.left, result);
+        preOrderTraversalRecursive(node.right, result);
+    }
+
+    public List<Integer> preorderTraversal3(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root == null) {
+            return result;
+        }
+
+        TreeNode node = root;
+        TreeNode prev = null;
+        while(node != null) {
+            if(node.left != null) {
+                prev = node.left;
+                // find the predecessor node
+                while(prev.right != null && prev.right != node) {
+                    prev = prev.right;
+                }
+
+                if(prev.right == node) {
+                    prev.right = null;
+                    node = node.right;
+                }
+                else {
+                    result.add(node.val);
+                    prev.right = node;
+                    node = node.left;
+                }
+            }
+            else {
+                result.add(node.val);
+                node = node.right;
+            }
+        }
+
+        return result;
+    }
+
+
+
 }

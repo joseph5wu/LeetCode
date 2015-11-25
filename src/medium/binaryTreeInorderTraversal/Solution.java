@@ -56,15 +56,47 @@ public class Solution {
     }
 
     private void inorderTraversalRecursive(TreeNode node, List<Integer> result){
-        if(node.left != null) {
-            inorderTraversalRecursive(node.left, result);
+        if(node == null) {
+            return;
         }
 
+        inorderTraversalRecursive(node.left, result);
         result.add(node.val);
+        inorderTraversalRecursive(node.right, result);
+    }
 
-        if(node.right != null) {
-            inorderTraversalRecursive(node.right, result);
+    public List<Integer> inorderTraversal3(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root == null) {
+            return result;
         }
+
+        TreeNode node = root;
+        TreeNode prev = null;
+        while(node != null) {
+            if(node.left != null) {
+                prev = node.left;
+                while(prev.right != null && prev.right != node) {
+                    prev = prev.right;
+                }
+
+                if(prev.right == node) {
+                    result.add(node.val);
+                    node = node.right;
+                    prev.right = null;
+                }
+                else {
+                    prev.right = node;
+                    node = node.left;
+                }
+            }
+            else {
+                result.add(node.val);
+                node = node.right;
+            }
+        }
+
+        return result;
     }
 
 }
