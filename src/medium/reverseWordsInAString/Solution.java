@@ -24,4 +24,36 @@ public class Solution {
 
         return sb.length() > 0 ? sb.deleteCharAt(sb.length() - 1).toString() : "";
     }
+
+    public void reverseWords(char[] s) {
+        if(s == null || s.length <= 1) {
+            return;
+        }
+
+        int start = 0;
+        int end = -1;
+        int i = start;
+        // reverse every word
+        while(i < s.length) {
+            if(s[i] == ' ' || i == s.length - 1) {
+                end = s[i] == ' ' ? i - 1 : i;
+                reverse(s, start, end);
+                start = i + 1;
+            }
+            i++;
+        }
+
+        // reverse the whole string
+        reverse(s, 0, s.length - 1);
+    }
+
+    private void reverse(char[] s, int start, int end) {
+        while(start < end) {
+            char temp = s[start];
+            s[start] = s[end];
+            s[end] = temp;
+            start++;
+            end--;
+        }
+    }
 }
