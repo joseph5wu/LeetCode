@@ -17,8 +17,8 @@ public class Solution {
             return -1;
         }
 
-        int left = 0, right = nums.length;
-        while(left < right) {
+        int left = 0, right = nums.length - 1;
+        while(left <= right) {
             int mid = left + (right - left) / 2;
             int midVal = nums[mid];
             if(midVal == target) {
@@ -34,7 +34,7 @@ public class Solution {
                 }
             }
             else {
-                if(midVal < target && target <= nums[right - 1]) {
+                if(midVal < target && target <= nums[right]) {
                     left = mid + 1;
                 }
                 else {
@@ -44,5 +44,41 @@ public class Solution {
         }
 
         return -1;
+    }
+
+    public boolean search2(int[] nums, int target) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+
+        int left = 0, right = nums.length - 1;
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            int midVal = nums[mid];
+            if(midVal == target) {
+                return true;
+            }
+            else if(midVal < nums[left]) {
+                if(target > nums[right] || target < midVal) {
+                    right = mid - 1;
+                }
+                else {
+                    left = mid + 1;
+                }
+            }
+            else if(midVal > nums[left]) {
+                if(target < nums[left] || target > midVal) {
+                    left = mid + 1;
+                }
+                else {
+                    right = mid - 1;
+                }
+            }
+            else {
+                left++;
+            }
+        }
+
+        return false;
     }
 }

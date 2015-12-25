@@ -29,4 +29,30 @@ public class Solution {
 
         return results;
     }
+
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> results = new ArrayList<>();
+        if(nums == null || nums.length == 0) {
+            results.add(new ArrayList<Integer>());
+            return results;
+        }
+
+        // sort the array
+        Arrays.sort(nums);
+        dfs(nums, 0, results, new ArrayList<>());
+        return results;
+    }
+
+    private void dfs(int[] nums, int index, List<List<Integer>> results, List<Integer> path) {
+        results.add(new ArrayList<>(path));
+
+        for(int i = index; i < nums.length; i++) {
+            if(i > index && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            path.add(nums[i]);
+            dfs(nums, i + 1, results, path);
+            path.remove(path.size() - 1);
+        }
+    }
 }
