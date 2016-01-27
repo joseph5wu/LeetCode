@@ -33,4 +33,32 @@ public class Solution {
 
         return left != null ? left : right;
     }
+
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) {
+            return null;
+        }
+        if(p == null) {
+            return q;
+        }
+        if(q == null) {
+            return p;
+        }
+
+        int min = Math.min(p.val, q.val);
+        int max = Math.max(p.val, q.val);
+        while(root != null) {
+            if(root.val < min) {
+                root = root.right;
+            }
+            else if(root.val > max) {
+                root = root.left;
+            }
+            else {
+                return root;
+            }
+        }
+
+        return null;
+    }
 }

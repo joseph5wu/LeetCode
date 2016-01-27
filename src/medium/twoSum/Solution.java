@@ -59,7 +59,7 @@ public class Solution {
 
     // Find if there exists any pair of numbers which sum is equal to the value.
     public boolean find(int value) {
-        for(Integer key : map.keySet()) {
+        for(int key : map.keySet()) {
             int other = value - key;
             if((key == other && map.get(key) > 1) || (key != other && map.containsKey(other))) {
                 return true;

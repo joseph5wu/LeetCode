@@ -38,4 +38,20 @@ public class Solution {
 
         return result;
     }
+
+    public static void main(String[] args) {
+        int[] array = new int[]{5,7,7,8,8,9};
+        int left = 0, right = array.length - 1;
+        int target = 8;
+        while(left < right) {
+            int mid = left + (right - left) / 2;
+            if(array[mid] < target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid;
+            }
+        }
+        System.out.print(left + " " + right);
+    }
 }

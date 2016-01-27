@@ -69,14 +69,16 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        int[] nums = {1};
+        //int[] nums = {1};
         Solution sol = new Solution();
-        List<List<Integer>> results = sol.permute(nums);
-        for(List<Integer> result : results) {
-            for(Integer i : result) {
-                System.out.print(i);
-            }
-            System.out.println();
-        }
+//        List<List<Integer>> results = sol.permute(nums);
+//        for(List<Integer> result : results) {
+//            for(Integer i : result) {
+//                System.out.print(i);
+//            }
+//            System.out.println();
+//        }
+        int[] nums = new int[]{1, 1, 2};
+        sol.permuteUnique(nums);
     }
 }
