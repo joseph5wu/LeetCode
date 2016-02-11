@@ -55,4 +55,23 @@ public class Solution {
         return result;
 
     }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> results = new ArrayList<>();
+        helper(root, results, 0);
+        return results;
+    }
+
+    private void helper(TreeNode node, List<List<Integer>> results, int level) {
+        if(node == null) {
+            return;
+        }
+        while(results.size() <= level) {
+            results.add(0, new ArrayList<>());
+        }
+        results.get(results.size() - 1 - level).add(node.val);
+
+        helper(node.left, results, level + 1);
+        helper(node.right, results, level + 1);
+    }
 }

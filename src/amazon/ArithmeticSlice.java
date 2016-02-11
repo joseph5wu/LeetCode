@@ -30,4 +30,10 @@ public class ArithmeticSlice {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{2,5,2,3,4,6,8,10,12,9,8,7,6,2,4,8};
+        ArithmeticSlice sol = new ArithmeticSlice();
+        System.out.println(sol.solution(nums));
+    }
 }

@@ -55,4 +55,41 @@ public class Solution {
             path.remove(path.size() - 1);
         }
     }
+
+    public List<List<Integer>> subsetsWithDup2(int[] nums) {
+        List<List<Integer>> results = new ArrayList<>();
+        if(nums == null || nums.length == 0) {
+            return results;
+        }
+
+        Arrays.sort(nums);
+        List<Integer> empty = new ArrayList<>();
+        results.add(empty);
+
+        int count;
+        int size;
+        for(int i = 0; i < nums.length; i++) {
+            count = 1;
+            while(i < nums.length - 1 && nums[i] == nums[i + 1]) {
+                count++;
+                i++;
+            }
+
+            size = results.size();
+            for(int j = 0; j < size; j++) {
+                List<Integer> temp = new ArrayList<>(results.get(j));
+                for(int k = 0; k < count; k++) {
+                    temp.add(nums[i]);
+                    results.add(new ArrayList<>(temp));
+                }
+            }
+        }
+        return results;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] nums = {1, 2, 2};
+        System.out.println(sol.subsetsWithDup2(nums));
+    }
 }

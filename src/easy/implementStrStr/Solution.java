@@ -10,31 +10,24 @@ public class Solution {
         if(haystack == null || needle == null) {
             return -1;
         }
-
-        int hayLength = haystack.length();
-        int needleLength = needle.length();
-        if(needleLength == 0) {
+        if(needle.length() == 0) {
             return 0;
         }
-        if(hayLength < needleLength) {
+        if(haystack.length() < needle.length()) {
             return -1;
         }
 
-        for(int i = 0; i < hayLength - needleLength + 1; i++) {
+        for(int i = 0; i <= haystack.length() - needle.length(); i++) {
             if(haystack.charAt(i) == needle.charAt(0)) {
-                boolean flag = true;
-                for(int j = 1; j < needleLength; j++) {
-                    if(haystack.charAt(i + j) != needle.charAt(j)) {
-                        flag = false;
-                        break;
-                    }
+                int j = 1;
+                while(j < needle.length() && haystack.charAt(i + j) == needle.charAt(j)) {
+                    j++;
                 }
-                if(flag) {
+                if(j == needle.length()) {
                     return i;
                 }
             }
         }
-
         return -1;
     }
 }
