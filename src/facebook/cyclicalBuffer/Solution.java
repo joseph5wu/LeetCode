@@ -2,7 +2,7 @@ package facebook.cyclicalBuffer;
 
 import java.util.*;
 public class Solution {
-    private List<Integer> list;
+    private int[] list;
     private int head;
     private int tail;
     private int used;
@@ -10,7 +10,7 @@ public class Solution {
 
 
     public Solution(int capacity) {
-        list = new ArrayList<>(capacity);
+        list = new int[capacity];
         this.head = 0;
         this.tail = -1;
         this.used = 0;
@@ -22,7 +22,7 @@ public class Solution {
             throw new IllegalStateException("list full");
         }
         tail = (tail + 1) % capacity;
-        list.add(tail, val);
+        list[tail] = val;
         used++;
     }
 
@@ -32,7 +32,7 @@ public class Solution {
         }
         head = head % capacity;
         used--;
-        return list.get(head++);
+        return list[head++];
     }
 
     public static void main(String[] args){

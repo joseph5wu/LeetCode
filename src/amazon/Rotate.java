@@ -3,6 +3,32 @@ package amazon;
 import java.util.Arrays;
 
 public class Rotate {
+
+    public static int[][] rotate(int[][] matrix, boolean clockwise) {
+        // edge case check
+
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        int[][] newMatrix = new int[columns][rows];
+
+        if(!clockwise) {
+            for(int i = 0; i < rows; i++) {
+                for(int j = 0; j < columns; j++) {
+                    newMatrix[j][rows - 1 - i] = matrix[i][j];
+                }
+            }
+        }
+        else {
+            for(int i = 0; i < rows; i++) {
+                for(int j = 0; j < columns; j++) {
+                    newMatrix[columns - 1 - j][i] = matrix[i][j];
+                }
+            }
+        }
+
+        return newMatrix;
+    }
+
     public int[][] solution(int[][] matrix, boolean isClockWise) {
         if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return matrix;

@@ -59,8 +59,8 @@ public class Solution {
                 allInters.add(inter);
             }
         }
-
-        Collections.sort(allInters, new Comparator<Interval>() {
+        // sort interval
+        Collections.sort(allInters, new Comparator<Interval> () {
             public int compare(Interval i1, Interval i2) {
                 if(i1.start != i2.start) {
                     return i1.start - i2.start;
@@ -69,26 +69,42 @@ public class Solution {
             }
         });
 
-        List<Interval> results = new ArrayList<>();
+
         PriorityQueue<Integer> heap = new PriorityQueue<>();
         heap.add(allInters.get(0).end);
-        int count = 1;
-        for(int i = 1; i < allInters.size(); i++) {
-            Interval inter = allInters.get(i);
-            int peekEndTime = heap.peek();
-            if(peekEndTime < inter.start) {
-                if(heap.size() == 1) {
-                    results.add(new Interval(peekEndTime, inter.start));
-                }
+        int rooms = 1;
+        Interval busy = new Interval(allInters.get(0).start, allInters.get(0).end);
+        for(int i = 1; i < intervals.size(); i++) {
+            Interval interval = allInters.get(i);
+            int end = heap.peek();
+            if(end <= interval.start) {
                 heap.poll();
             }
             else {
-                count++;
+                rooms++;
+                busy.start = interval.start;
+                busy.end = end;
             }
-            heap.add(inter.end);
+            heap.add(interval.end);
         }
-        System.out.println("Busies time # of employers = " + count);
-        return results;
+
+        System.out.println("busy rooms: " + rooms + ", time=" + busy);
+
+
+        List<Interval> free = new ArrayList<>();
+        Interval base = allInters.get(0);
+        for(int i = 1; i < allInters.size(); i++) {
+            Interval interval = allInters.get(i);
+            if(base.end < interval.start) {
+                free.add(new Interval(base.end, interval.start));
+                base = interval;
+            }
+            else {
+                base.end = Math.max(base.end, interval.end);
+            }
+        }
+
+        return free;
     }
 
     public static void main(String[] args) {

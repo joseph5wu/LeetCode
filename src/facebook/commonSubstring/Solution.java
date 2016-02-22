@@ -19,8 +19,8 @@ public class Solution {
         }
 
         // using this to mark before updated dp[i-1]
-        int prev = 0;
         for(int i = 1; i < s1.length(); i++) {
+            int prev = 0;
             for(int j = 0; j < s2.length(); j++) {
                 int temp = dp[j];
                 if(s1.charAt(i) == s2.charAt(j)) {

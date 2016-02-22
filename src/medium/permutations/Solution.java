@@ -68,6 +68,34 @@ public class Solution {
         }
     }
 
+    public List<List<Integer>> permutation2(int[] nums) {
+        List<List<Integer>> results = new ArrayList<>();
+        if(nums == null || nums.length == 0) {
+            return results;
+        }
+
+        Arrays.sort(nums);
+        Set<List<Integer>> set = new HashSet<>();
+        set.add(new ArrayList<>());
+        for(int i = 0; i < nums.length; i++) {
+            Set<List<Integer>> temp = new HashSet<>();
+            for(int j = 0; j <= i; j++) {
+                for(List<Integer> list : set) {
+                    List<Integer> l = new ArrayList<>(list);
+                    l.add(j, nums[i]);
+                    temp.add(l);
+                }
+            }
+            set = temp;
+        }
+
+        for(List<Integer> list : set) {
+            results.add(list);
+        }
+        return results;
+
+    }
+
     public static void main(String[] args) {
         //int[] nums = {1};
         Solution sol = new Solution();

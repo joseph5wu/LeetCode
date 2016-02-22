@@ -69,10 +69,10 @@ class Array2D<T>{
             return false;
         }
         // clear empty list
-        while(rowId < array.size() && (array.get(rowId) == null || array.get(rowId).isEmpty())) {
-            array.remove(rowId);
-            rowId++;
-        }
+//        while(rowId < array.size() && (array.get(rowId) == null || array.get(rowId).isEmpty())) {
+//            array.remove(rowId);
+//            rowId++;
+//        }
 
         return rowId < array.size();
     }

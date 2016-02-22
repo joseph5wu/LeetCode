@@ -128,7 +128,7 @@ public class Solution {
 
     public static void main(String args[]) {
         Solution sol = new Solution();
-        int[] nums = {0,0,0,0,1,1,2,2};
+        int[] nums = {1,1,2,3,4,1,5};
         System.out.println(sol.getTimeSlots(nums, 2));
         System.out.println(sol.getShortest(nums, 2));
     }

@@ -20,7 +20,7 @@ public class Solution {
             } else {
                 num = end;
             }
-            segNum *= 256;
+            segNum = 256;
         }
         return ip + "/" + total;
     }

@@ -34,7 +34,7 @@ public class Solution {
 
     private static void helper(TrieNode node, String target, String current, int k, int[] dp, List<String> results) {
         if(node.isEnd) {
-            // check whether the diff is less than or equals to k, otherwise stop traversalling
+            // check whether the diff is less than or equals to k, otherwise stop
             if(dp[target.length()] <= k) {
                 results.add(current);
             }
